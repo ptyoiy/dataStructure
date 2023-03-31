@@ -1,0 +1,8 @@
+<svg #queue width="300" height="150"></svg>
+<div>
+  <button (click)="enqueue_front(item); updateView()">enqueue_front</button>
+  <button (click)="enqueue_rear(item); updateView()">enqueue_rear</button>
+  <button (click)="dequeue_front(); updateView()">dequeue_front</button>
+  <button (click)="dequeue_rear(); updateView()">dequeue_rear</button>
+  <button (click)="init(8); updateView()">init 8</button>
+</div>
