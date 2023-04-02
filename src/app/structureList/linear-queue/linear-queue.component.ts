@@ -1,3 +1,4 @@
+import { UtilsService } from './../../services/utils.service';
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import * as d3 from 'd3';
 
@@ -12,15 +13,18 @@ export class LinearQueueComponent implements AfterViewInit {
   front: number;
   rear: number;
   item = 0;
+  removed: number;
   @ViewChild('queue') view: ElementRef<SVGElement>;
+  root: d3.Selection<SVGElement, unknown, null, undefined>;
+
+  constructor(public util: UtilsService){}
 
   ngAfterViewInit(): void {
-
+    this.root = d3.select(this.view.nativeElement);
   }
 
   updateView() {
-    const root = d3.select(this.view.nativeElement);
-    root
+    this.root
       .selectAll('rect')
       .data(this.queue)
       .join('rect')
@@ -28,7 +32,7 @@ export class LinearQueueComponent implements AfterViewInit {
       .attr('y', 20)
       .attr('width', 15)
       .attr('height', 2);
-    root
+    this.root
       .selectAll('text.data')
       .data(this.queue)
       .join('text')
@@ -37,7 +41,7 @@ export class LinearQueueComponent implements AfterViewInit {
       .attr('y', 19)
       .text(d => d)
     const arrow = [this.rear, this.front]
-    root
+    this.root
       .selectAll('text.arrow')
       .data(arrow)
       .join('text')
@@ -53,6 +57,7 @@ export class LinearQueueComponent implements AfterViewInit {
     this.queue = new Array(size);
     this.front = this.rear = -1;
     this.item = 0;
+    this.removed = undefined;
   }
 
   isFull() {

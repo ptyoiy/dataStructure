@@ -1,3 +1,4 @@
+import { UtilsService } from './../../services/utils.service';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import * as d3 from 'd3';
 
@@ -12,13 +13,14 @@ export class DequeComponent {
   front: number;
   rear: number;
   item = 0;
+  removed: number;
   @ViewChild('queue') view: ElementRef<SVGElement>;
   root;
   pie: d3.Pie<any, number | { valueOf(): number }>;
   data_ready: any[];
   arcGenerator: (r: number) => d3.Arc<any, d3.DefaultArcObject>;
 
-  constructor() {}
+  constructor(public util: UtilsService) {}
   ngAfterViewInit(): void {
     this.root = d3
       .select(this.view.nativeElement)
@@ -67,7 +69,7 @@ export class DequeComponent {
     this.front = 0;
     this.rear = 0;
     this.item = 0;
-
+    this.removed = undefined;
     this.pie = d3.pie().value((d) => d[1]);
     this.data_ready = this.pie(
       Object.entries(

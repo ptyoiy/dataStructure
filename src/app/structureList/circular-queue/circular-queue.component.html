@@ -1,6 +1,7 @@
 <svg #queue width="150" height="150"></svg>
 <div>
   <button (click)="enqueue(item); updateView()">enqueue</button>
-  <button (click)="dequeue(); updateView()">dequeue</button>
+  <button (click)="removed = util.isNum(dequeue(), removed); updateView()">dequeue</button>
   <button (click)="init(8); updateView()">init 8</button>
+  removed value : {{removed}}
 </div>

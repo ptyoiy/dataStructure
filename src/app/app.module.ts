@@ -7,6 +7,7 @@ import { StackLinkedListComponent } from './structureList/stack-linked-list/stac
 import { LinearQueueComponent } from './structureList/linear-queue/linear-queue.component';
 import { CircularQueueComponent } from './structureList/circular-queue/circular-queue.component';
 import { DequeComponent } from './structureList/deque/deque.component';
+import { LinkedListDequeComponent } from './structureList/linked-list-deque/linked-list-deque.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { DequeComponent } from './structureList/deque/deque.component';
     StackLinkedListComponent,
     LinearQueueComponent,
     CircularQueueComponent,
-    DequeComponent
+    DequeComponent,
+    LinkedListDequeComponent
   ],
   imports: [
     BrowserModule,

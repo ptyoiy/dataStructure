@@ -1,3 +1,4 @@
+import { UtilsService } from './../../services/utils.service';
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import * as d3 from "d3";
 
@@ -36,6 +37,11 @@ export class StackLinkedListComponent implements AfterViewInit {
   @ViewChild('linkedStack') view: ElementRef<SVGElement>;
   stack: linkedStack = { top: undefined };
   item = 0;
+  removed: number;
+
+  constructor(public util: UtilsService) {
+
+  }
 
   ngAfterViewInit(): void {
     this.init();
@@ -48,22 +54,26 @@ export class StackLinkedListComponent implements AfterViewInit {
       .data(this.stack.top || [])
       .join('rect')
       .attr('x', (d, i) => 10)
-      .attr('y', (d, i) => i * 15)
+      .attr('y', (d, i) => i * 20)
       .attr('width', (d, i) => 30)
-      .attr('height', (d, i) => 15);
+      .attr('height', (d, i) => 20)
+      .attr('fill', 'none')
+      .attr('stroke', 'black')
+      .attr('stroke-width', 1);
 
     d3.select(this.view.nativeElement)
       .selectAll('text')
       .data(this.stack.top || [])
       .join('text')
-      .attr('x', (d, i) => 45)
-      .attr('y', (d, i) => 15 + i * 15)
+      .attr('x', (d, i) => 15)
+      .attr('y', (d, i) => 18 + i * 20)
       .text(d => d.item);
   }
 
   init() {
     this.stack.top = new stackNode(-1, undefined);
     this.item = 0;
+    this.removed = undefined;
   }
 
   isEmpty() {

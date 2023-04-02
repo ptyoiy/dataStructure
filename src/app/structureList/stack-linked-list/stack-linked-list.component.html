@@ -1,6 +1,7 @@
-<svg #linkedStack width="80" height="100"></svg>
+<svg #linkedStack width="100" height="200"></svg>
 <div>
   <button (click)="push(item); updateView();">push</button>
-  <button (click)="pop(); updateView();">pop</button>
+  <button (click)="removed = util.isNum(pop(), removed); updateView();">pop</button>
   <button (click)="init(); updateView();">init</button>
+  removed data: {{removed}}
 </div>
