@@ -1,0 +1,17 @@
+<svg #list width="700" height="100"></svg>
+<div>
+  <button (click)="insertFirst(item); updateView()">insertFirst</button>
+  <button (click)="insert(item, inputPos); updateView()">insert at pos</button>
+  <input #input type="number" [min]="0" [(ngModel)]="inputPos">|
+  <button (click)="removed = util.isNum(deleteFirst(), removed); updateView()">deleteFirst</button>
+  <button (click)="removed = util.isNum(delete(inputDeletePos), removed); updateView()">delete at pos</button>
+  <input #input type="number" [min]="0" [(ngModel)]="inputDeletePos">|
+  <button (click)="search(searchValue)">검색</button>
+  <input type="number" [min]="0" [(ngModel)]="searchValue">|
+  <button (click)="reverse(); updateView()">reverse</button>|
+  <button (click)="init(); updateView()">init</button>
+
+</div>
+<div>
+  removed value : {{removed}}
+</div>
